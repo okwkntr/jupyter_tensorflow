@@ -4,16 +4,16 @@ RUN yum -y update
 RUN yum -y groupinstall "Development Tools"
 RUN yum -y install epel-release && \
     yum -y install python-devel python-pip lapack-devel freetype-devel \
-           libpng-devel libjpeg-turbo-devel ImageMagick
+           libpng-devel libjpeg-turbo-devel ImageMagick tkinter
 RUN pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.10.0-cp27-none-linux_x86_64.whl
 RUN pip install pandas scipy jupyter && \
     pip install scikit-learn matplotlib Pillow && \
     pip install google-api-python-client
 RUN cd /etc/yum.repos.d && \
-    curl -LO http://www.graphviz.org/graphviz-rhel.repo && \
+# curl -LO http://www.graphviz.org/graphviz-rhel.repo && \
     cd /tmp && \
-    curl -LO http://www.graphviz.org/pub/graphviz/stable/redhat/el7Server/x86_64/os/gts-0.7.6-21.20111025.el7.x86_64.rpm && \
-    yum -y install graphviz graphviz-gd gts-0.7.6-21.20111025.el7.x86_64.rpm
+    curl -LO http://204.178.9.49/pub/graphviz/stable/redhat/el7/i386/os/gts-0.7.6-21.20111025.el7.i686.rpm && \
+    yum -y install graphviz graphviz-gd gts-0.7.6-21.20111025.el7.i686.rpm
 
 RUN jupyter notebook --generate-config && \
     ipython profile create
